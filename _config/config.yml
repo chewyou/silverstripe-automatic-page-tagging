@@ -1,0 +1,6 @@
+---
+Name: automatic-page-tagging-config
+---
+Page:
+  extensions:
+    - Chewyou\AutoPageTagging\PageExtension
