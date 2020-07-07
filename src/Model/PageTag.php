@@ -17,20 +17,18 @@ class PageTag extends DataObject {
     ];
 
     private static $has_one = [
-        'SiteConfig' => SiteConfig::class
+        'Parent' => PageTag::class,
     ];
 
-    private static $belongs_many_many = [
-        'Page' => Page::class
+    private static $many_many = [
+        'Children' => PageTag::class
     ];
 
-    private static $table_name = 'AlgoliaTagName';
+    private static $table_name = 'PageTagName';
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
-        $fields->removeByName('SiteConfigID');
-        $fields->removeByName('LinkTracking');
-        $fields->removeByName('FileTracking');
+
         return $fields;
     }
 }
