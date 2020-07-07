@@ -2,6 +2,14 @@
 
 namespace Chewyou\AutoPageTagging;
 
+use Seftan\App\Forms\GridField\GridFieldArchiveAction;
+use Seftan\App\SeftanOrderableRows;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
+use SilverStripe\Forms\GridField\GridFieldDeleteAction;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\SiteConfig\SiteConfig;
 use Page;
@@ -9,7 +17,7 @@ use Page;
 class PageTag extends DataObject {
 
     private static $singular_name = 'Tag Name';
-
+    private static $table_name = 'PageTagName';
     private static $plural_name = 'Tag Names';
 
     private static $db = [
@@ -17,17 +25,34 @@ class PageTag extends DataObject {
     ];
 
     private static $has_one = [
-        'Parent' => PageTag::class,
+        'ParentTag' => PageTag::class,
     ];
 
-    private static $many_many = [
-        'Children' => PageTag::class
+    private static $has_many = [
+        'ChildTags' => PageTag::class
     ];
 
-    private static $table_name = 'PageTagName';
+    private static $belongs_many_many = [
+        'Page' => Page::class
+    ];
+
+    private static $summary_fields = [
+        'Title' => 'Name'
+    ];
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
+
+        $fields->removeByName(['ParentTagID', 'ChildTags', 'Page']);
+
+        $gridfieldConfig = (new GridFieldConfig_RelationEditor())
+            ->removeComponentsByType(GridFieldAddExistingAutocompleter::class);
+
+        if ($this->ID) {
+            $fields->addFieldsToTab('Root.Main', [
+                GridField::create('ChildTags', '', $this->ChildTags(), $gridfieldConfig)
+            ]);
+        }
 
         return $fields;
     }

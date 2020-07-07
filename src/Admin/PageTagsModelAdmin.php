@@ -16,15 +16,18 @@ use Symbiote\GridFieldExtensions\GridFieldConfigurablePaginator;
 class PageTagsModelAdmin extends ModelAdmin implements PermissionProvider {
     private static $url_segment = 'page-tags-admin';
     private static $menu_title = 'Page Tags';
-    private static $menu_icon_class = 'font-icon-book-open';
+    private static $menu_icon_class = 'font-icon-tags';
     private static $managed_models = [PageTag::class];
+
+    public function getList() {
+        $list = parent::getList();
+        $list = $list->filter('ParentTagID', '');
+        return $list;
+    }
 
     public function getEditForm($id = null, $fields = null) {
         $form = parent::getEditForm($id, $fields);
         $gridField = $form->Fields()->fieldByName($this->sanitiseClassName($this->modelClass));
-//        $gridField->getConfig()->removeComponentsByType(GridFieldFilterHeader::class)
-//            ->removeComponentsByType(GridFieldArchiveAction::class)
-//            ->removeComponentsByType(GridFieldDeleteAction::class);
         $gridField->getConfig()->removeComponentsByType(GridFieldExportButton::class);
         $gridField->getConfig()->removeComponentsByType(GridFieldImportButton::class);
         $gridField->getConfig()->removeComponentsByType(GridFieldPaginator::class);
