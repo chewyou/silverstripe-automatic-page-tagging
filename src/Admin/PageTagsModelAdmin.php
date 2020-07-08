@@ -2,7 +2,6 @@
 
 namespace Chewyou\AutoPageTagging;
 
-use Seftan\App\Forms\GridField\GridFieldArchiveAction;
 use SilverStripe\Admin\ModelAdmin;
 use SilverStripe\Forms\GridField\GridFieldDeleteAction;
 use SilverStripe\Forms\GridField\GridFieldExportButton;

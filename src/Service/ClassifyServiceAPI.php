@@ -52,7 +52,8 @@ class ClassifyServiceAPI {
     public function trainClass($className, $text) {
         $apiKey = $this->writeApiKey;
         $classifierName = $this->classifierName;
-        $url = $this->baseUrl . '/me/' . $classifierName . '/' . $className . '/train';
+        $accountName = $this->accountName;
+        $url = $this->baseUrl . '/' . $accountName . '/' . $classifierName . '/' . $className . '/train';
         $result = $this->apiPost($apiKey, 'texts', $text, $url);
         return $result;
     }
@@ -60,7 +61,8 @@ class ClassifyServiceAPI {
     public function untrainClass($className, $text) {
         $apiKey = $this->writeApiKey;
         $classifierName = $this->classifierName;
-        $url = $this->baseUrl . '/v1/me/' . $classifierName . '/' . $className . '/untrain';
+        $accountName = $this->accountName;
+        $url = $this->baseUrl . '/' . $accountName . '/' . $classifierName . '/' . $className . '/untrain';
         $result = $this->apiPost($apiKey, 'texts', $text, $url);
         return $result;
     }
