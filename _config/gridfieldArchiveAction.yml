@@ -1,0 +1,4 @@
+#https://github.com/silverstripe/silverstripe-versioned/issues/200#issuecomment-465152708
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\Versioned\VersionedGridFieldArchiveExtension:
+    class: 'Chewyou\AutoPageTagging\GridFieldArchiveExtension'

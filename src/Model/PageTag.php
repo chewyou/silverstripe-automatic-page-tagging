@@ -56,4 +56,18 @@ class PageTag extends DataObject {
 
         return $fields;
     }
+
+    public function onBeforeWrite() {
+        $classifyAPI = new ClassifyServiceAPI();
+        $classifyAPI->addClass($this->Title);
+
+        parent::onBeforeWrite();
+    }
+
+    public function onAfterDelete() {
+        $classifyAPI = new ClassifyServiceAPI();
+        $result = $classifyAPI->deleteClass($this->Title);
+
+        parent::onBeforeWrite();
+    }
 }

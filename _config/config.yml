@@ -4,3 +4,7 @@ Name: automatic-page-tagging-config
 Page:
   extensions:
     - Chewyou\AutoPageTagging\PageExtension
+
+Silverstripe\SiteConfig\SiteConfig:
+  extensions:
+    - Chewyou\AutoPageTagging\SiteConfigExtension

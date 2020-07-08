@@ -12,6 +12,7 @@ class SiteConfigExtension extends DataExtension {
         "ReadAPIKey" => "Varchar(500)",
         "WriteAPIKey" => "Varchar(500)",
         "ClassifierName" => "Varchar(500)",
+        "AccountName" => "Varchar(500)",
     );
 
     public function updateCMSFields(FieldList $fields) {
@@ -19,6 +20,7 @@ class SiteConfigExtension extends DataExtension {
             TextField::create("ReadAPIKey", "Read API Key"),
             TextField::create("WriteAPIKey", "Write API Key"),
             TextField::create("ClassifierName", "Classifier Name"),
+            TextField::create("AccountName", "Account Name"),
         ]);
     }
 
