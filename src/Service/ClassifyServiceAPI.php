@@ -54,7 +54,7 @@ class ClassifyServiceAPI {
         $classifierName = $this->classifierName;
         $accountName = $this->accountName;
         $url = $this->baseUrl . '/' . $accountName . '/' . $classifierName . '/' . $className . '/train';
-        $result = $this->apiPost($apiKey, 'texts', $text, $url);
+        $result = $this->apiPost($apiKey, 'texts', [$text], $url);
         return $result;
     }
 
@@ -63,7 +63,7 @@ class ClassifyServiceAPI {
         $classifierName = $this->classifierName;
         $accountName = $this->accountName;
         $url = $this->baseUrl . '/' . $accountName . '/' . $classifierName . '/' . $className . '/untrain';
-        $result = $this->apiPost($apiKey, 'texts', $text, $url);
+        $result = $this->apiPost($apiKey, 'texts', [$text], $url);
         return $result;
     }
 
