@@ -41,7 +41,7 @@ Chewyou\AutoPageTagging\PageExtension:
   content_to_train: 'Title,BannerText,Content,Intro'
 ```  
 
-Create uClassify account.  
+Create uClassify account.  https://www.uclassify.com/  
 Get READ and WRITE API keys.  
 Get username.  
 Create a Classifier for the Site. Remember the name of it.  
