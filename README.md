@@ -2,7 +2,7 @@
 
 
 ## Synopsis
-
+I'm hoping this will turn into a project I will develop some more, but essentially it is a tag field in the silverstripe CMS that is automatically filled with a subject/topic based on the content in the page
 
 ## Requirements 
 *  SilverStripe 4+
