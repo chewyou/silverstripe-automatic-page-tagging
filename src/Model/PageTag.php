@@ -15,7 +15,6 @@ use SilverStripe\SiteConfig\SiteConfig;
 use Page;
 
 class PageTag extends DataObject {
-
     private static $singular_name = 'Tag Name';
     private static $table_name = 'PageTagName';
     private static $plural_name = 'Tag Names';
@@ -49,9 +48,7 @@ class PageTag extends DataObject {
             ->removeComponentsByType(GridFieldAddExistingAutocompleter::class);
 
         if ($this->ID) {
-            $fields->addFieldsToTab('Root.Main', [
-                GridField::create('ChildTags', '', $this->ChildTags(), $gridfieldConfig)
-            ]);
+            $fields->addFieldsToTab('Root.Main', [GridField::create('ChildTags', '', $this->ChildTags(), $gridfieldConfig)]);
         }
 
         return $fields;
@@ -60,14 +57,12 @@ class PageTag extends DataObject {
     public function onBeforeWrite() {
         $classifyAPI = new ClassifyServiceAPI();
         $classifyAPI->addClass($this->Title);
-
         parent::onBeforeWrite();
     }
 
     public function onAfterDelete() {
         $classifyAPI = new ClassifyServiceAPI();
         $result = $classifyAPI->deleteClass($this->Title);
-
         parent::onBeforeWrite();
     }
 }
